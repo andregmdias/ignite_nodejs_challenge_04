@@ -10,6 +10,10 @@ class UsersRepository implements IUsersRepository {
     this.users = [];
   }
 
+  list(): User[] {
+    return this.users;
+  }
+
   public static getInstance(): UsersRepository {
     if (!UsersRepository.INSTANCE) {
       UsersRepository.INSTANCE = new UsersRepository();
@@ -19,23 +23,40 @@ class UsersRepository implements IUsersRepository {
   }
 
   create({ name, email }: ICreateUserDTO): User {
-    // Complete aqui
+    const user: User = new User();
+    Object.assign(user, {
+      name,
+      email,
+      admin: false,
+      created_at: new Date(),
+      updated_at: new Date(),
+    });
+
+    this.users.push(user);
+
+    return user;
   }
 
   findById(id: string): User | undefined {
-    // Complete aqui
+    const fetchUser = this.users.find((user) => user.id === id);
+    return fetchUser;
   }
 
   findByEmail(email: string): User | undefined {
-    // Complete aqui
+    const fetchUser = this.users.find((user) => user.email.toLocaleLowerCase() === email.toLocaleLowerCase());
+    return fetchUser;
   }
 
   turnAdmin(receivedUser: User): User {
-    // Complete aqui
-  }
 
-  list(): User[] {
-    // Complete aqui
+
+    Object.assign(receivedUser, {
+      admin: true,
+      updatedAt: new Date()
+    });
+
+    console.log(receivedUser);
+    return receivedUser;
   }
 }
 
