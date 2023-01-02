@@ -43,16 +43,16 @@ class UsersRepository implements IUsersRepository {
   }
 
   findByEmail(email: string): User | undefined {
-    const fetchUser = this.users.find((user) => user.email.toLocaleLowerCase() === email.toLocaleLowerCase());
+    const fetchUser = this.users.find(
+      (user) => user.email.toLocaleLowerCase() === email.toLocaleLowerCase()
+    );
     return fetchUser;
   }
 
   turnAdmin(receivedUser: User): User {
-
-
     Object.assign(receivedUser, {
       admin: true,
-      updatedAt: new Date()
+      updated_at: new Date(),
     });
 
     console.log(receivedUser);
