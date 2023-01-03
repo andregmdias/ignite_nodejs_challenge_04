@@ -91,25 +91,68 @@
             }
           }
         }
-      }
-    },
-    "get": {
-      "tags": [
-        "Category"
-      ],
-      "summary": "Get all categories",
-      "description": "Returns all categories",
-      "responses": {
-        "200": {
-          "description": "Success",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "properties": {
-                  "name": {
-                    "type": "string"
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get all users",
+        "description": "Returns all users to admin users",
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
                   }
+                },
+                "example": [
+                  {
+                    "admin": false,
+                    "id": "7fffd2f9-a90a-463b-a1bb-2e30a83d96ec",
+                    "name": "Ada Lovelace",
+                    "email": "ada@lovelace.com",
+                    "created_at": "2023-01-03T01:14:19.148Z",
+                    "updated_at": "2023-01-03T01:14:19.148Z"
+                  }
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "Non admin user error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "User is not admin"
                 }
               }
             }
