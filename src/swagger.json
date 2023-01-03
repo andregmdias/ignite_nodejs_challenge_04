@@ -1,0 +1,121 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CRUD Users API",
+    "description": "This is the documentaion fro Users API",
+    "version": "1.0.0",
+    "contact": {
+      "email": "andregmdia@gmail.com"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Create an user",
+        "description": "Creates a new non-admin user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "tyoe": "object",
+                "properties": {
+                  "name": "string",
+                  "email": "string"
+                }
+              },
+              "example": {
+                "name": "Ada Lovelace",
+                "email": "ada@lovelace.com"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "admin": false,
+                  "id": "7fffd2f9-a90a-463b-a1bb-2e30a83d96ec",
+                  "name": "Ada Lovelace",
+                  "email": "ada@lovelace.com",
+                  "created_at": "2023-01-03T01:14:19.148Z",
+                  "updated_at": "2023-01-03T01:14:19.148Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User already exists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "User with email invalid-email already exists"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "get": {
+      "tags": [
+        "Category"
+      ],
+      "summary": "Get all categories",
+      "description": "Returns all categories",
+      "responses": {
+        "200": {
+          "description": "Success",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
