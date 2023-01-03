@@ -98,6 +98,17 @@
         ],
         "summary": "Get all users",
         "description": "Returns all users to admin users",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "header",
+            "description": "ID of admin user",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Ok",
@@ -167,6 +178,84 @@
         ],
         "summary": "Updates the admin status of the specified user",
         "description": "Turns the specified user into an admin",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of user that needs to be updated",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "admin": {
+                      "type": "boolean"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "admin": false,
+                  "id": "7fffd2f9-a90a-463b-a1bb-2e30a83d96ec",
+                  "name": "Ada Lovelace",
+                  "email": "ada@lovelace.com",
+                  "created_at": "2023-01-03T01:14:19.148Z",
+                  "updated_at": "2023-01-03T01:14:19.148Z"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "User not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "error": "User not found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Find a specific user by ID",
+        "description": "Show a specific user",
         "parameters": [
           {
             "name": "user_id",
