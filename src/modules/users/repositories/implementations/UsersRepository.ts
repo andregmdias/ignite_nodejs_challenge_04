@@ -54,8 +54,6 @@ class UsersRepository implements IUsersRepository {
       admin: true,
       updated_at: new Date(),
     });
-
-    console.log(receivedUser);
     return receivedUser;
   }
 }

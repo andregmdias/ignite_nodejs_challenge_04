@@ -6,10 +6,9 @@ interface IRequest {
 }
 
 class ShowUserProfileUseCase {
-  constructor(private usersRepository: IUsersRepository) { }
+  constructor(private usersRepository: IUsersRepository) {}
 
   execute({ user_id }: IRequest): User {
-
     if (!user_id) {
       throw new Error("user_id is required");
     }
